@@ -1,0 +1,3 @@
+# CodeQL issues a warning about an unrecognized token in /Unsafe Deserialization/de.js, ignoring for now
+paths-ignore:
+  - **/de.js
