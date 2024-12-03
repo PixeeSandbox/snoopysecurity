@@ -16,7 +16,8 @@ connection.connect();
 router.get('/example1/user/:id', (req,res) => {
     let userId = req.params.id;
     let query = {
-        sql : "SELECT * FROM users WHERE id=" + userId
+        sql : "SELECT * FROM users WHERE id=?",
+        values : [userId]
     }
     connection.query(query,(err, result) => {
         res.json(result);
@@ -25,15 +26,14 @@ router.get('/example1/user/:id', (req,res) => {
 
 router.get('/example2/user/:id',  (req,res) => {
     let userId = req.params.id;
-    connection.query("SELECT * FROM users WHERE id=" + userId,(err, result) => {
+    connection.query("SELECT * FROM users WHERE id=?", [userId], (err, result) => {
         res.json(result);
     });
 })
 
 router.get('/example3/user/:id',  (req,res) => {
     let userId = req.params.id;
-    connection.query({
-        sql : "SELECT * FROM users WHERE id=" +userId
+    connection.query({sql: "SELECT * FROM users WHERE id=?", values: [userId]},
     },(err, result) => {
         res.json(result);
     });
