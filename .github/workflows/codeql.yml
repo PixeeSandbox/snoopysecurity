@@ -48,11 +48,11 @@ jobs:
         # - language: c-cpp
         #   build-mode: autobuild
         - language: csharp
-          build-mode: autobuild
+          build-mode: none
         - language: go
           build-mode: autobuild
         - language: java-kotlin
-          build-mode: autobuild
+          build-mode: none
         - language: javascript-typescript
           build-mode: none
         - language: python
