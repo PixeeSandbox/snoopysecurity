@@ -1,6 +1,4 @@
-
-
-//safeLoadAll and jsyaml.safeLoad are vulnerable if DEFAULT_FULL_SCHEMA is used 
+// safeLoadAll and jsyaml.safeLoad are vulnerable if DEFAULT_FULL_SCHEMA is used 
 const jsyaml = require("js-yaml");
 
 var express = require('express');
