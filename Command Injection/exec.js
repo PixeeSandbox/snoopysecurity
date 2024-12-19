@@ -1,8 +1,15 @@
 const express = require('express');
 const router = express.Router()
+const rateLimit = require('express-rate-limit');
+
+const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000, 
+    max: 100 
+});
+
+router.use(limiter);
 
 const { exec, spawn }  = require('child_process');
-
 
 router.post('/ping', (req,res) => {
     exec(`${req.body.url}`, (error) => {

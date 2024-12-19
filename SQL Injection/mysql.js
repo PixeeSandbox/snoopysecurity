@@ -1,4 +1,5 @@
 const express = require('express');
+const rateLimit = require('express-rate-limit');
 const router = express.Router()
 
 const config = require('../../config')
@@ -10,8 +11,14 @@ const connection = mysql.createConnection({
   password : config.MYSQL_PASSWORD,
   database : config.MYSQL_DB_NAME,
 });
- 
+
 connection.connect();
+
+const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000, 
+    max: 100 
+});
+router.use(limiter);
 
 router.get('/example1/user/:id', (req,res) => {
     let userId = req.params.id;
@@ -38,6 +45,5 @@ router.get('/example3/user/:id',  (req,res) => {
         res.json(result);
     });
 })
-
 
 module.exports = router
